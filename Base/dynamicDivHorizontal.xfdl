@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="dynamicDivHorizontal" width="480" height="1120" titletext="New Form" onload="dynamicDivHorizontal_onload" left="0" top="0">
+    <Layouts>
+      <Layout height="1120" width="480">
+        <Div id="mainDiv00" taborder="0" text="mainDiv00" left="20" top="792" width="440" height="300" formscrolltype="horizontal" border="1px dotted black" background="transparent">
+          <Layouts>
+            <Layout>
+              <Div id="subDiv00" taborder="0" text="subDiv00" left="0" top="0" width="300" height="300">
+                <Layouts>
+                  <Layout>
+                    <ImageViewer id="ImageViewer00" taborder="0" text="ImageViewer00" left="0" top="0" width="300" height="200" image="url('https://picsum.photos/300?1')"/>
+                    <Static id="Static00" taborder="1" text="TITLE 01" left="0" top="ImageViewer00:0" width="300" height="100"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="subDiv01" taborder="1" text="subDiv01" left="subDiv00:0" top="0" width="300" height="300">
+                <Layouts>
+                  <Layout>
+                    <ImageViewer id="ImageViewer00" taborder="0" text="ImageViewer00" left="0" top="0" width="300" height="200" image="url('https://picsum.photos/300?2')"/>
+                    <Static id="Static00" taborder="1" text="TITLE 02" left="0" top="ImageViewer00:0" width="300" height="100"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="subDiv02" taborder="2" text="subDiv02" left="subDiv01:0" top="0" width="300" height="300">
+                <Layouts>
+                  <Layout>
+                    <ImageViewer id="ImageViewer00" taborder="0" text="ImageViewer00" left="0" top="0" width="300" height="200" image="url('https://picsum.photos/300?3')"/>
+                    <Static id="Static00" taborder="1" text="TITLE 03" left="0" top="ImageViewer00:0" width="300" height="100"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="1" text="⚡ A design sample for creating dynamic div below " left="21" top="731" width="409" height="51"/>
+        <Grid id="Grid00" taborder="2" left="21" top="90" width="440" height="300" binddataset="dsItem" autoenter="select">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="278"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="31"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="id"/>
+                <Cell col="1" text="title"/>
+                <Cell col="2" text="imageUrl"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:id" edittype="normal"/>
+                <Cell col="1" text="bind:title" edittype="normal"/>
+                <Cell col="2" text="bind:imageUrl" edittype="normal"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="addData" taborder="3" text="Add data" left="34" top="20" width="120" height="50" onclick="addData_onclick"/>
+        <Button id="createSubDiv" taborder="4" text="Create sub div" left="174" top="20" width="120" height="50" onclick="createMainDiv_onclick"/>
+        <Button id="recreateMainDiv" taborder="5" text="Recreate div" left="314" top="20" width="120" height="50" onclick="recreateMainDiv_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsItem">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="imageUrl" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">1</Col>
+            <Col id="title">TITLE 01</Col>
+            <Col id="imageUrl">https://picsum.photos/300?1</Col>
+          </Row>
+          <Row>
+            <Col id="id">2</Col>
+            <Col id="title">TITLE 02</Col>
+            <Col id="imageUrl">https://picsum.photos/300?2</Col>
+          </Row>
+          <Row>
+            <Col id="id">3</Col>
+            <Col id="title">TITLE 03</Col>
+            <Col id="imageUrl">https://picsum.photos/300?3</Col>
+          </Row>
+          <Row>
+            <Col id="id">4</Col>
+            <Col id="imageUrl">https://picsum.photos/300?4</Col>
+            <Col id="title">TITLE 04</Col>
+          </Row>
+          <Row>
+            <Col id="title">TITLE 05</Col>
+            <Col id="imageUrl">https://picsum.photos/300?5</Col>
+            <Col id="id">5</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+/**
+ * @returns {object Div} objMainDiv
+ * @description create main container div
+**/
+this.createMainDiv = function() {
+	var pMainDiv = {
+		id: "mainDiv",
+		left:20,
+		top: "Grid00:20",
+		width: 440,
+		height: 300
+	}
+
+	// Create main Div	
+	var objMainDiv = new Div(pMainDiv.id, pMainDiv.left, pMainDiv.top, pMainDiv.width, pMainDiv.height);
+	objMainDiv.set_formscrolltype("horizontal");	
+	this.addChild(pMainDiv.id, objMainDiv);
+	objMainDiv.show();	
+	return objMainDiv;
+}
+
+/**
+ * @param {object parent div} pDiv 
+ * @returns void
+ * @description create sub div
+**/
+this.createSubContainer = function(pDiv) {
+	
+	var itemCount = this.dsItem.rowcount;	
+	var mainDiv = pDiv;
+	// default position sub div
+	var pSubDiv = {
+		id: "subdiv",
+		left:0,
+		top: 0,
+		width: 300,
+		height: 300
+	}
+	
+	for(var i=0; i < itemCount; i++) {
+		
+		var itemId = this.dsItem.getColumn(i, "id");
+		var itemTitle = this.dsItem.getColumn(i, "title");
+		var itemImageUrl = this.dsItem.getColumn(i, "imageUrl");
+	
+		var subDivId = pSubDiv.id + itemId;
+		
+		if(mainDiv.form.lookup(subDivId)) continue;
+		
+		var item = {
+			id: subDivId,
+			title: itemTitle,
+			imageUrl: itemImageUrl		
+		};
+		
+		var objSubDiv;
+		
+		// Create subDiv
+		if(i==0) {
+			objSubDiv = new Div(subDivId, pSubDiv.left, pSubDiv.top, pSubDiv.width, pSubDiv.height);
+		}
+		
+		if(i>0) {
+			var previousSubDivId = pSubDiv.id + (itemId-1);
+			var subDivLeft = previousSubDivId + ":0";
+			objSubDiv = new Div(subDivId, subDivLeft, pSubDiv.top, pSubDiv.width, pSubDiv.height);
+		}
+		 
+		// Add sub div to Parent main div  
+		mainDiv.addChild(subDivId, objSubDiv);
+		 
+		// create items in sub div
+		this.createItem(item, objSubDiv);
+		 
+		// Show sub div  
+		objSubDiv.show(); 
+	}
+	
+	// it needs to reset parent div form
+	mainDiv.form.resetScroll();
+
+}
+/**
+ * @param {object item} objItem 
+ * @param {object parent div} pObj 
+ * @returns void
+ * @description create item
+**/
+
+this.createItem = function(objItem, pObj) {
+
+	// default position sub div
+	var pImageViewer = {
+		left:0,
+		top: 0,
+		width: 300,
+		height: 200
+	};
+	var pStatic = {
+		left:0,
+		top: 0,
+		width: 300,
+		height: 100
+	};	
+	
+	// create ImageViewer component
+	var imageId = objItem.id + "ImageViewer";
+	var objImageViewer = new ImageViewer(imageId, pImageViewer.left, pImageViewer.top, pImageViewer.width, pImageViewer.height);
+
+	objImageViewer.set_image(objItem.imageUrl);	
+	
+	pObj.addChild(imageId, objImageViewer); 	
+
+	// create static component
+	var staticId = objItem.id + "Static";
+	var staticTop = imageId + ":0";
+	var objStatic = new Static(staticId, pStatic.left, staticTop, pStatic.width, pStatic.height);
+
+	objStatic.set_text(objItem.title);
+	//objStatic.set_textAlign("center");
+	
+	pObj.addChild(staticId, objStatic); 
+
+}
+
+this.dynamicDivHorizontal_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//this.createSubContainer(this.createMainDiv());
+};
+
+
+this.addData_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsItem.addRow();
+	var idx = nRow + 1;
+	this.dsItem.setColumn(nRow, "id", idx);
+	this.dsItem.setColumn(nRow, "title", "TiTile"+idx);
+	this.dsItem.setColumn(nRow, "imageUrl", "https://picsum.photos/300?"+idx);
+};
+
+this.createMainDiv_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	var mainDiv = this.lookup("mainDiv");
+	if(mainDiv) this.createSubContainer(mainDiv);
+	if(!mainDiv) this.createSubContainer(this.createMainDiv());
+};
+
+
+this.recreateMainDiv_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.lookup("mainDiv")) {	
+		var objRemove = this.removeChild("mainDiv"); 
+		// Destroy Object  
+		objRemove.destroy(); 
+		objRemove = null;
+	}
+	this.createSubContainer(this.createMainDiv());	
+};
+]]></Script>
+  </Form>
+</FDL>
