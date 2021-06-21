@@ -189,10 +189,9 @@ this.createSubContainer = function(pDiv) {
  * @returns void
  * @description create item
 **/
-
 this.createItem = function(objItem, pObj) {
 
-	// default position sub div
+	// default position image and static
 	var pImageViewer = {
 		left:0,
 		top: 0,
