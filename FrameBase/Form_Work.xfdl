@@ -2,7 +2,9 @@
 <FDL version="2.1">
   <Form id="Form_Work" width="1280" height="720" titletext="Form_Work">
     <Layouts>
-      <Layout width="1280" height="720" screenid="Desktop_screen"/>
+      <Layout width="1280" height="720" screenid="Desktop_screen">
+        <Div id="Div00" taborder="0" text="Div00" left="0" top="0" right="0" bottom="0" url="Base::mlm.xfdl"/>
+      </Layout>
       <Layout name="Tablet_screen" width="800" height="1280" screenid="Tablet_screen"/>
       <Layout name="Phone_screen" width="480" height="768" screenid="Phone_screen"/>
     </Layouts>

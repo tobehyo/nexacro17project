@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="mlm" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280" screenid="Desktop_screen">
+        <Edit id="Edit00" taborder="1" left="44" top="51" width="376" height="49" displaynulltext="Write" border="0px none, 0px none, 2px solid darkblue" oninput="Edit00_oninput"/>
+        <Static id="Static00" taborder="2" text="Display Input Text" left="44" top="140" width="376" height="48"/>
+        <Button id="Button00" taborder="0" text="Desktop" left="44" top="210" width="120" height="50" onclick="Button00_onclick"/>
+      </Layout>
+      <Layout name="Layout0" width="800" height="1280" mobileorientation="landscape" screenid="Desktop_screen,Tablet_screen">
+        <Button id="Button00" text="Tablet"/>
+      </Layout>
+      <Layout name="Layout1" width="480" height="728" mobileorientation="landscape" screenid="Desktop_screen,Tablet_screen,Phone_screen">
+        <Button id="Button00" text="Moblie"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Edit00_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+	this.Static00.set_text(obj.value);
+	//obj.updateToDataset();
+};
+
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert("Hello World!");
+};]]></Script>
+    <Objects>
+      <Dataset id="dsVaule">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>
