@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sendMessageToWeChatWork" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="To Users" left="60" top="80" width="100" height="40"/>
+        <Edit id="UsersEdit" taborder="1" left="Static00:30" top="80" width="250" height="40" displaynulltext="kj | zhao"/>
+        <Static id="Static01" taborder="2" text="Content" left="60" top="130" width="100" height="40"/>
+        <TextArea id="ContentTextArea" taborder="3" left="Static01:30" top="140" width="250" height="137"/>
+        <Button id="btnSendMessage" taborder="4" text="Send Message" left="460" top="80" width="120" height="40" onclick="btnSendMessage_onclick"/>
+        <Static id="Static02" taborder="6" text="Log" left="60" top="310" width="100" height="40"/>
+        <TextArea id="LogTextArea" taborder="5" left="Static02:30" top="307" width="250" height="143"/>
+        <Static id="Static03" taborder="7" text="Simple Example to send post data" left="60" top="25" width="520" height="40" font="normal 20pt/normal &quot;normal/normal&quot;" border="0px none,0px none,2px solid #254fae" textAlign="center"/>
+        <Static id="Static04" taborder="8" text="A Dataobject is an object that calls or manages data.&#13;&#10;&#13;&#10;It supports REST API call function and one-way binding with Dataset object.&#13;&#10;&#13;&#10;You can communicate with the server using the dataobject's request method.&#13;&#10;In this case, the XMLHttpRequest object is used internally." left="595" top="80" width="355" height="370" font="normal 16pt/normal &quot;Arial&quot;" wordWrap="english" verticalAlign="top" border="2px dashed #cccccc" padding="10px"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btnSendMessage_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strJsonData = JSON.stringify({
+		users: this.UsersEdit.value,
+		message: this.ContentTextArea.value
+	});
+
+	// send JSON data to Server
+	var strServiceid = "sendMessageToWeChatWork";
+	var strMethod = "POST";	
+	var url = "http://localhost:3000/wechat/sendMessage";
+	var header = {"Content-Type" : "application/json;charset=UTF-8"};
+	var objParam = {
+		"httpheader" : header,
+		"postdata" : strJsonData,
+		"async" : true
+	}
+
+	this.DataObject00.request(strServiceid, strMethod, url, objParam);
+};
+
+this.DataObject00_onerror = function(obj:nexacro.DataObject,e:nexacro.DataObjectErrorEventInfo)
+{
+	trace(e.statuscode, e.errordata, e.errormsg);	
+	this.LogTextArea.set_value(msg);	
+};
+
+this.DataObject00_onsuccess = function(obj:nexacro.DataObject,e:nexacro.DataObjectEventInfo)
+{
+	trace(e.serviceid, e.statuscode, e.response);	
+	this.LogTextArea.set_value(e.response);	
+};
+]]></Script>
+    <Objects>
+      <DataObject id="DataObject00" onload="DataObject00_onload" onerror="DataObject00_onerror" onsuccess="DataObject00_onsuccess"/>
+    </Objects>
+  </Form>
+</FDL>
