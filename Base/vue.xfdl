@@ -7,8 +7,8 @@
         <Button id="Button01" taborder="1" left="Button00:5" top="160" onclick="Button00_onclick" text="I am Nexacro component.&#13;&#10;You clicked me 0 times." background="#254fae" color="white" font="16px &quot;Arial&quot;" border="0px none" width="250" height="60" visible="true"/>
         <Div id="Div00" taborder="2" text="Div00" left="70" top="50" width="250" height="60" url="Base::buttonCount.xfdl"/>
         <Div id="Div01" taborder="3" text="Div01" left="Div00:5" top="50" width="250" height="60" url="Base::buttonCount.xfdl"/>
-        <Static id="Static00" taborder="4" text="⚡ Call button using Div" left="70" top="10" width="250" height="30"/>
-        <Static id="Static01" taborder="5" left="70" top="120" width="250" height="30" text="⚡ Directly use Button" visible="true"/>
+        <Static id="Static00" taborder="4" text="⚡ Call button using Div url" left="70" top="10" width="250" height="30"/>
+        <Static id="Static01" taborder="5" left="70" top="120" width="250" height="30" text="⚡ Use Button" visible="true"/>
         <Static id="Static02" taborder="6" left="70" top="230" width="120" height="30" text="⚡ Vue Component"/>
         <Static id="Static03" taborder="7" text="Target:&#13;&#10;Modern Browser&#13;&#10;Ex: Chrome, Edge, Firefox etc.&#13;&#10;&#13;&#10;&lt;fc v='#d90429'&gt;&lt;b v='true'&gt;Except IE(Internet Explorer)&lt;/b&gt;&lt;/fc&gt;" left="613" top="25" width="277" height="195" usedecorate="true"/>
       </Layout>
