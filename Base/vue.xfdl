@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="vue" width="1280" height="720" titletext="New Form" onload="vue_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Button id="Button00" taborder="0" left="70" top="160" onclick="Button00_onclick" text="I am Nexacro component.&#13;&#10;You clicked me 0 times." background="#254fae" color="white" font="16px &quot;Arial&quot;" border="0px none" width="250" height="60" visible="true"/>
+        <Button id="Button01" taborder="1" left="Button00:5" top="160" onclick="Button00_onclick" text="I am Nexacro component.&#13;&#10;You clicked me 0 times." background="#254fae" color="white" font="16px &quot;Arial&quot;" border="0px none" width="250" height="60" visible="true"/>
+        <Div id="Div00" taborder="2" text="Div00" left="70" top="50" width="250" height="60" url="Base::buttonCount.xfdl"/>
+        <Div id="Div01" taborder="3" text="Div01" left="Div00:5" top="50" width="250" height="60" url="Base::buttonCount.xfdl"/>
+        <Static id="Static00" taborder="4" text="⚡ Call button using Div" left="70" top="10" width="250" height="30"/>
+        <Static id="Static01" taborder="5" left="70" top="120" width="250" height="30" text="⚡ Directly use Button" visible="true"/>
+        <Static id="Static02" taborder="6" left="70" top="230" width="120" height="30" text="⚡ Vue Component"/>
+        <Static id="Static03" taborder="7" text="Target:&#13;&#10;Modern Browser&#13;&#10;Ex: Chrome, Edge, Firefox etc.&#13;&#10;&#13;&#10;&lt;fc v='#d90429'&gt;&lt;b v='true'&gt;Except IE(Internet Explorer)&lt;/b&gt;&lt;/fc&gt;" left="613" top="25" width="277" height="195" usedecorate="true"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+* Load JS and Create DOM
+* @param {string} src JS URL to add
+* @param {Function} callback Function to call after loading JS
+* @param {Object} option Information for creating DOM
+* @returns void
+*/
+this.loadScript = function(src, callback, option) {
+
+	if(option) {
+		this.createDom(option);
+	}	
+
+	var script = document.createElement('script');
+	script.setAttribute('src', src);
+	script.addEventListener('load', callback);
+	document.head.appendChild(script);
+}
+
+/**
+* Create DOM
+* @param {string} src JS URL to add
+* @param {Function} callback Function to call after loading JS
+* @param {Object} option Information for creating DOM
+* [option's property]{@link getRealDomInfo}
+* @returns void
+*/
+this.createDom = function(option) {
+	const vueDiv = document.createElement("div");	
+	const domInfo = this.getRealDomInfo(option.targetObjectForPosition);		
+	const el = domInfo.element;
+	const pos = domInfo.position;
+	const top = domInfo.nexacroObj instanceof nexacro.Form ? pos.top : pos.top + pos.height + 10 + "px";
+	
+	vueDiv.id = option.domName;
+	vueDiv.style.left = pos.left + "px";
+	vueDiv.style.top = 	top;
+	vueDiv.innerHTML = option.componentNames.join("");
+	
+	el.parentElement.appendChild(vueDiv);
+}
+
+
+/**
+* Get DOM ID
+* @param {Object} obj Nexacro object
+* @param {boolean} useQuerySelector If use querySelector, use true
+* @returns {string} Dom's ID
+*/
+this.getDomId = function(obj, useQuerySelector) {	
+	const id = obj._unique_id;	
+	if(useQuerySelector) id = "#" + obj._unique_id.replace(/\./g, '\\.');
+	return id;
+};
+
+/**
+* Get DOM information
+* @param {Object} nexacroObj Nexacro object
+* @returns {Object} nexacroObj Nexacro object
+* @returns {Object} element Dom object
+* @returns {Object} position Dom position
+* @returns {number} position.left
+* @returns {number} position.top
+* @returns {number} position.right
+* @returns {number} position.bottom
+* @returns {number} position.width
+* @returns {number} position.height
+*/
+this.getRealDomInfo = function(nexacroObj) {
+	if(!nexacroObj) nexacroObj = this;
+	const id = this.getDomId(nexacroObj)	
+	const domObj = document.getElementById(id);
+	
+	return {
+		nexacroObj: nexacroObj,
+		element: domObj,
+		position: {
+			left: nexacroObj.getOffsetLeft(), 
+			top: nexacroObj.getOffsetTop(), 
+			right: nexacroObj.getOffsetRight(), 
+			bottom: nexacroObj.getOffsetBottom(),
+			width: nexacroObj.getOffsetWidth(),
+			height: nexacroObj.getOffsetHeight()
+		}
+	};
+};
+
+/**
+* Create Vue component and Mount Vue
+* @returns void
+*/
+this.callVueElement = function() {
+	trace("callback start for mounting vue");	
+	// Create a Vue application
+	const app = Vue.createApp({});
+
+	// Define a new global component called button-counter
+	app.component('button-counter', {
+	  data() {
+		return {
+		  count: 0
+		}
+	  },
+	  template: `
+		<button class="btn" v-on:click="count++">
+		  I am Vue component.<br>
+		  You clicked me {{ count }} times.
+		</button>`
+	});
+
+	app.mount('#app');
+};
+
+const cssStyle = `
+	.btn {
+		background-color: #4CAF50; /* Green */
+		border: none;
+		color: white;		
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		width: 250px;
+		height: 60px;
+	}
+`;
+
+/**
+* Add style to head in HTML
+* @param {string} css
+* @returns void
+*/
+this.addCSS = function(css) {
+	const styleSheet = document.styleSheets[document.styleSheets.length - 1];
+	styleSheet.insertRule(css);
+};
+
+
+/**
+* onload event
+* This event occurs after all the components and data of a Form are loaded
+*/
+this.vue_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	//<script src="https://unpkg.com/vue@next"></script>
+	if(system.navigatorname.indexOf("nexacro") === -1) {
+	
+		// add class for vue component
+		this.addCSS(cssStyle);
+		
+		// Load Vue.js	
+		const url = "https://unpkg.com/vue@next";
+		const vueOption = {
+			domName: "app", 
+			componentNames: ["<button-counter></button-counter>", "<button-counter></button-counter>"],
+			targetObjectForPosition: this.Static02
+		};
+		
+		this.loadScript(url, this.callVueElement, vueOption);	
+	}
+};
+
+/** 
+* Count when Button is clicked 
+*/
+this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	const ds = this["ds"+obj.id];
+	const cnt = ds.getColumn(0,0) + 1;	
+	const text = `I am Nexacro component.\nYou clicked me ${cnt} times.`;
+	
+	obj.set_text(text);	
+	ds.setColumn(0,0,cnt);	
+};]]></Script>
+    <Objects>
+      <Dataset id="dsButton00">
+        <ColumnInfo>
+          <Column id="cnt" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="cnt">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsButton01">
+        <ColumnInfo>
+          <Column id="cnt" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="cnt">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

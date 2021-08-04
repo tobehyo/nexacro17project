@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="buttonCount" width="250" height="60" titletext="button count">
+    <Layouts>
+      <Layout height="60" width="250">
+        <Button id="Button00" taborder="0" left="0" top="0" onclick="Button00_onclick" text="I am Nexacro component.&#13;&#10;You clicked me 0 times." background="#d90429" color="white" font="16px &quot;Arial&quot;" border="0px none" right="0" bottom="0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsButton00">
+        <ColumnInfo>
+          <Column id="cnt" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="cnt">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	const ds = this["ds"+obj.id];
+	const cnt = ds.getColumn(0,0) + 1;	
+	const text = `I am Nexacro component.\nYou clicked me ${cnt} times.`;
+	
+	obj.set_text(text);	
+	ds.setColumn(0,0,cnt);	
+};]]></Script>
+  </Form>
+</FDL>
