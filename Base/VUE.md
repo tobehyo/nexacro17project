@@ -1,13 +1,14 @@
 # Vue.js 사용 예제 설명
 
 > vue.xfdl Form에서 vue.js를 사용하는 제한적인 예제입니다.  
-> Web Runtime Envirment(Web browser) 에서만 사용이 가능하며 script tag 를 이용하여 vue.js 호출하여 사용합니다.
+> Web Runtime Envirment(Web browser) 에서만 사용이 가능하며 script tag 를 이용하여 vue.js 호출하여 사용합니다.  
+> 이 예제에서는 ES2015 사양의 `const` [(참고 URL)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/const) 와 `Template Literals(``)`[(참고 URL)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals) 를 사용했습니다.
 
 ## Target Browser
 
-Moder browser
-예: Chrome, Firefox, Edge, Safari, etc.  
-IE(Internet Explorer) 제외
+Moder browser  
+예: `Chrome`, `Firefox`, `Edge`, `Safari`, etc.  
+`IE(Internet Explorer)` 제외
 
 ## 예제 설명
 
@@ -37,7 +38,7 @@ this.vue_onload = function (obj: nexacro.Form, e: nexacro.LoadEventInfo) {
       targetObjectForPosition: this.Static02,
     };
 
-		// Vue.js 로드
+    // Vue.js 로드
     this.loadScript(url, this.callVueElement, vueOption);
   }
 };
@@ -45,16 +46,18 @@ this.vue_onload = function (obj: nexacro.Form, e: nexacro.LoadEventInfo) {
 
 `loadScript`
 
-##### vue.js 로드 및 vue 에서 사용할 dom 생성
+##### vue 에서 사용할 dom 생성 및 vue.js 로드 후 callback 함수 호출
 
 ```js
 this.loadScript = function (src, callback, option) {
   if (option) {
+    // dom 생성
     this.createDom(option);
   }
 
   var script = document.createElement("script");
   script.setAttribute("src", src);
+  // script 의 onload 이벤트에서 callback 함수 실행
   script.addEventListener("load", callback);
   document.head.appendChild(script);
 };
@@ -165,10 +168,7 @@ this.addCSS = function (css) {
 ##### vue 의 count 예제와 같은 count 를 위한 스크립트
 
 ```js
-this.Button00_onclick = function (
-  obj: nexacro.Button,
-  e: nexacro.ClickEventInfo
-) {
+this.Button00_onclick = function (obj: nexacro.Button, e: nexacro.ClickEventInfo) {
   const ds = this["ds" + obj.id];
   const cnt = ds.getColumn(0, 0) + 1;
   const text = `I am Nexacro component.\nYou clicked me ${cnt} times.`;
