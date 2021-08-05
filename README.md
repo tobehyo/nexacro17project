@@ -4,7 +4,7 @@
 
 ## Getting started
 
-- Clone this repo or download [nexacro17project master.zip](https://github.com/tobehyo/nexacro17project/archive/refs/heads/master.zip)
+- Clone this repo or download [nexacro17project](https://github.com/tobehyo/nexacro17project/archive/refs/heads/main.zip)
 - Open the nexacro project using Nexacro Studio.
 
 ## Nexacro Studio Getting Started Tutorial
