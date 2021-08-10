@@ -769,7 +769,7 @@ this.btnSearch00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	var inputValue = this.Edit00_00.value;
 	var arrayColumns = ["id", "corporatename", "name", "iphone", "email", "wechat", "contractcontent", "contractdate", "supplementarydate", "contractprice", "signedbyID"];
-	var columnName = this.comboSearch.value;	
+	var columnName = this.comboSearch00.value;	
 	var filterString = this.getFilterString(columnName, inputValue);
 	
 	if(inputValue == undefined) return this.dsListCN.filter("");
