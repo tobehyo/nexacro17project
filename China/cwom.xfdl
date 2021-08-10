@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="cwom" width="1280" height="720" titletext="New Form" onload="cwom_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Static id="Static00_00" taborder="0" text="客户工单管理" left="30" top="30" width="200" height="30" font="bold 28px/28px &quot;微软雅黑&quot;" color="#333333"/>
+        <Grid id="Grid00" taborder="1" left="30" top="Static00_00:30" bottom="30" right="30" binddataset="dsCwom" border="0px none" oncellclick="Grid00_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="134"/>
+                <Column size="67"/>
+                <Column size="67"/>
+              </Columns>
+              <Rows>
+                <Row size="50" band="head"/>
+                <Row size="50"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="工单编号" border="0 none"/>
+                <Cell col="1" text="工单主题" border="0 none"/>
+                <Cell col="2" text="下单时间" border="0 none"/>
+                <Cell col="3" text="客户联系人" border="0 none"/>
+                <Cell col="4" text="接单时间" border="0 none"/>
+                <Cell col="5" text="接单人" border="0 none"/>
+                <Cell col="6" text="是否完结" border="0 none"/>
+                <Cell col="7" text="完结时间" border="0 none"/>
+                <Cell col="8" text="状态" border="0 none"/>
+                <Cell col="9" colspan="2" text="操作" border="0 none" comboautoselect="false"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:workorderno" border="0 none" textAlign="center" displaytype="normal" edittype="none" color="#0000ff"/>
+                <Cell col="1" text="bind:workordersubject" border="0 none" textAlign="center"/>
+                <Cell col="2" text="bind:ordertime" border="0 none" textAlign="center"/>
+                <Cell col="3" text="bind:customercontact" border="0 none" textAlign="center"/>
+                <Cell col="4" text="bind:orderreceivingtime" border="0 none" textAlign="center"/>
+                <Cell col="5" border="0 none" textAlign="center" displaytype="combotext" edittype="none" combodataset="dsEmp" combocodecol="id" combodatacol="name" text="bind:receiverID" suppress="0"/>
+                <Cell col="6" text="bind:isitover" border="0 none" textAlign="center"/>
+                <Cell col="7" text="bind:overtime" border="0 none" textAlign="center"/>
+                <Cell col="8" text="bind:stateID" border="0 none" textAlign="center" displaytype="combotext" combodataset="dsState" combodatacol="state" combocodecol="id"/>
+                <Cell col="9" text="编辑" border="0 none" textAlign="center" displaytype="normal" edittype="none" color="#0000ff"/>
+                <Cell col="10" border="0 none" color="#0000ff" textAlign="center" text="expr:stateID==1?'取消':''"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button00" taborder="2" text="添加" width="60" right="30" border="0 none" background="#4c58ff" borderRadius="3px" color="#ffffff" font="18px/18px &quot;微软雅黑&quot;" height="30" onclick="Button00_onclick" top="30"/>
+        <Static id="Static00" taborder="3" text="工单编号：" left="Static00_00:30" width="60" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px"/>
+        <Static id="Static00_01" taborder="4" text="接单人：" left="480" width="50" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px"/>
+        <Static id="Static00_01_00" taborder="5" text="状态：" left="690" width="40" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px"/>
+        <Static id="Static00_01_00_00" taborder="6" text="排序：" left="890" width="40" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px"/>
+        <Edit id="Edit00" taborder="7" left="340" width="120" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px" autoselect="false" oninput="Edit00_oninput"/>
+        <Combo id="Combo00" taborder="8" text="王欣蕊" left="550" width="120" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px" innerdataset="dsEmp" datacolumn="name" codecolumn="id" index="0" value="0" onitemchanged="Combo_onitemchanged"/>
+        <Combo id="Combo00_00" taborder="9" text="全部" left="750" width="120" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px" innerdataset="dsState" datacolumn="state" codecolumn="id" autoselect="false" index="0" value="0" onitemchanged="Combo_onitemchanged"/>
+        <Combo id="Combo00_00_00" taborder="10" text="默认" left="950" width="120" bottom="Grid00:30" height="20" font="14px/14px &quot;Gulim&quot;" borderRadius="3px" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="0" value="0" onitemchanged="Combo00_00_00_onitemchanged">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">0</Col>
+                <Col id="datacolumn">默认</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">正序</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">倒序</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Combo>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Edit00_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+	var inputValue = obj.value;
+	var columnName = "workorderno";
+	
+	if(inputValue == undefined) return this.dsCwom.filter("");	
+	
+	this.dsCwom.filter(columnName + ".indexOf(\""+inputValue+"\") > -1");	
+};
+
+
+this.Combo_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	var comboCodeValue = obj.value;
+	var columnName = obj.codecolumn;
+	
+	if(comboCodeValue === "0" || comboCodeValue == undefined) return this.dsCwom.filter("");	
+	
+	this.dsCwom.filter(columnName + "===\""+comboCodeValue+"\"");
+	
+};
+
+this.Combo00_00_00_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	// Refer Dataset keystring.
+	var comboCodeValue = obj.value;	
+	var sortColumnName = "workorderno";
+	
+	if(comboCodeValue === "0" || comboCodeValue == undefined) this.dsCwom.set_keystring("");
+	if(comboCodeValue === "1" || comboCodeValue == undefined) this.dsCwom.set_keystring("S:+" + sortColumnName);
+	if(comboCodeValue === "2" || comboCodeValue == undefined) this.dsCwom.set_keystring("S:-" + sortColumnName);
+};
+]]></Script>
+    <InitValue/>
+    <Objects>
+      <Dataset id="dsCwom">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="workorderno" type="STRING" size="256"/>
+          <Column id="workordersubject" type="STRING" size="256"/>
+          <Column id="ordertime" type="STRING" size="256"/>
+          <Column id="customercontact" type="STRING" size="256"/>
+          <Column id="orderreceivingtime" type="STRING" size="256"/>
+          <Column id="receiverID" type="STRING" size="256"/>
+          <Column id="isitover" type="STRING" size="256"/>
+          <Column id="overtime" type="STRING" size="256"/>
+          <Column id="stateID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">1</Col>
+            <Col id="workorderno">1069741506</Col>
+            <Col id="workordersubject">A1</Col>
+            <Col id="ordertime">2222-01-22</Col>
+            <Col id="customercontact">李总</Col>
+            <Col id="orderreceivingtime">1111-11-11</Col>
+            <Col id="receiverID">1</Col>
+            <Col id="isitover">已完结</Col>
+            <Col id="overtime">2021-7-25</Col>
+            <Col id="stateID">1</Col>
+          </Row>
+          <Row>
+            <Col id="id">2</Col>
+            <Col id="workorderno">1069741507</Col>
+            <Col id="workordersubject">B2</Col>
+            <Col id="ordertime">2222-02-22</Col>
+            <Col id="customercontact">张三丰</Col>
+            <Col id="orderreceivingtime">1111-11-11</Col>
+            <Col id="receiverID">2</Col>
+            <Col id="isitover">未完结</Col>
+            <Col id="overtime">3333-3-3</Col>
+            <Col id="stateID">2</Col>
+          </Row>
+          <Row>
+            <Col id="id">3</Col>
+            <Col id="workorderno">1069741505</Col>
+            <Col id="workordersubject">C3</Col>
+            <Col id="ordertime">2222-03-22</Col>
+            <Col id="customercontact">张三丰</Col>
+            <Col id="orderreceivingtime">1111-11-11</Col>
+            <Col id="receiverID">2</Col>
+            <Col id="isitover">未完结</Col>
+            <Col id="overtime">3333-3-3</Col>
+            <Col id="stateID">2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEmp">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="typeID" type="STRING" size="256"/>
+          <Column id="username" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="iphone" type="STRING" size="256"/>
+          <Column id="status" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">0</Col>
+            <Col id="name">全部</Col>
+            <Col id="typeID">0</Col>
+          </Row>
+          <Row>
+            <Col id="id">1</Col>
+            <Col id="name">王欣蕊</Col>
+            <Col id="typeID">1</Col>
+            <Col id="username">123</Col>
+            <Col id="password">123</Col>
+            <Col id="iphone">133</Col>
+            <Col id="status">0</Col>
+          </Row>
+          <Row>
+            <Col id="id">2</Col>
+            <Col id="name">张三</Col>
+            <Col id="typeID">2</Col>
+            <Col id="username">321</Col>
+            <Col id="password">321</Col>
+            <Col id="iphone">135</Col>
+            <Col id="status">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsState">
+        <ColumnInfo>
+          <Column id="id" type="INT" size="256"/>
+          <Column id="state" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">0</Col>
+            <Col id="state">全部</Col>
+          </Row>
+          <Row>
+            <Col id="id">1</Col>
+            <Col id="state">预留</Col>
+          </Row>
+          <Row>
+            <Col id="id">2</Col>
+            <Col id="state">进场</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

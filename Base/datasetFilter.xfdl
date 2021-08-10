@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="datasetFilter" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280" stepcount="2">
+        <Combo id="Combo00" taborder="0" text="Combo00" left="928" top="33" width="252" height="47" innerdataset="dsCombo" codecolumn="code" datacolumn="data" type="caseifilterlike" displaynulltext="type"/>
+        <Edit id="Edit00" taborder="1" left="231" top="30" width="239" height="54" onkeyup="Edit00_onkeyup"/>
+        <Button id="btnSearch" taborder="2" text="Search" left="480" top="30" width="110" height="54" onclick="btnSearch_onclick"/>
+        <Grid id="Grid00" taborder="3" left="30" top="115" binddataset="dsList" height="585" width="720">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="170"/>
+                <Column size="106"/>
+                <Column size="200"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="120"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+                <Cell col="3" text="Column3"/>
+                <Cell col="4" text="Column4"/>
+                <Cell col="5" text="Column5"/>
+                <Cell col="6" text="Column6"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+                <Cell col="3" text="bind:Column3"/>
+                <Cell col="4" text="bind:Column4"/>
+                <Cell col="5" text="bind:Column5"/>
+                <Cell col="6" text="bind:Column6"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="4" text="Combo Filter&#13;&#10;Set type casefilterlike" left="750" top="33" width="160" height="47"/>
+        <Combo id="comboSearch" taborder="5" text="ALL" left="30" top="30" width="175" height="54" innerdataset="dsSearchCombo" codecolumn="code" datacolumn="data" index="0" value="all"/>
+        <Button id="btnReset" taborder="6" text="Reset" left="600" top="30" width="110" height="54" onclick="btnReset_onclick"/>
+        <Combo id="Combo00_00" taborder="7" text="Combo00" left="938" top="43" width="252" height="47" innerdataset="dsComboCN" codecolumn="code" datacolumn="data" type="caseifilterlike" positionstep="1" displaynulltext="执笔"/>
+        <Edit id="Edit00_00" taborder="8" left="241" top="40" width="239" height="54" positionstep="1" onkeyup="Edit00_00_onkeyup"/>
+        <Button id="btnSearch00" taborder="9" text="搜索" left="490" top="40" width="110" height="54" positionstep="1" onclick="btnSearch00_onclick"/>
+        <Grid id="Grid00_00" taborder="10" left="40" top="125" width="670" height="285" binddataset="dsListCN" positionstep="1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="193"/>
+                <Column size="80"/>
+                <Column size="158"/>
+                <Column size="238"/>
+                <Column size="80"/>
+                <Column size="177"/>
+                <Column size="164"/>
+                <Column size="197"/>
+                <Column size="181"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="id"/>
+                <Cell col="1" text="corporatename"/>
+                <Cell col="2" text="name"/>
+                <Cell col="3" text="iphone"/>
+                <Cell col="4" text="email"/>
+                <Cell col="5" text="wechat"/>
+                <Cell col="6" text="contractcontent"/>
+                <Cell col="7" text="contractdate"/>
+                <Cell col="8" text="supplementarydate"/>
+                <Cell col="9" text="contractprice"/>
+                <Cell col="10" text="signedbyID"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:id"/>
+                <Cell col="1" text="bind:corporatename"/>
+                <Cell col="2" text="bind:name"/>
+                <Cell col="3" text="bind:iphone"/>
+                <Cell col="4" text="bind:email"/>
+                <Cell col="5" text="bind:wechat"/>
+                <Cell col="6" text="bind:contractcontent"/>
+                <Cell col="7" text="bind:contractdate"/>
+                <Cell col="8" text="bind:supplementarydate"/>
+                <Cell col="9" text="bind:contractprice"/>
+                <Cell col="10" text="bind:signedbyID"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00_00" taborder="11" text="Combo Filter&#13;&#10;集类型&quot;casefilterlike&quot;" left="760" top="43" width="160" height="47" positionstep="1"/>
+        <Combo id="comboSearch00" taborder="12" text="ALL" left="40" top="40" width="175" height="54" innerdataset="dsSearchComboCN" codecolumn="code" datacolumn="data" index="0" value="all" positionstep="1"/>
+        <Button id="btnReset00" taborder="13" text="复位" left="610" top="40" width="110" height="54" positionstep="1" onclick="btnReset00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="chk" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="BIGDECIMAL" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+          <Column id="Column5" type="BIGDECIMAL" size="256"/>
+          <Column id="Column6" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column3">321458</Col>
+            <Col id="Column4">20170101</Col>
+            <Col id="Column5">321458</Col>
+            <Col id="Column0">William Penn</Col>
+            <Col id="Column2">Pennsylvania, USA</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column6">William Penn was the founder of the English North American colony, the Province of Pennsylvania.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">425862</Col>
+            <Col id="Column4">20170201</Col>
+            <Col id="Column5">425862</Col>
+            <Col id="Column0">Benjamin Franklin</Col>
+            <Col id="Column2">Milk Street, Boston, Massachusetts, USA</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column6">Benjamin Franklin was an American polymath and one of the founding fathers of the USA.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">57786</Col>
+            <Col id="Column4">20170601</Col>
+            <Col id="Column5">57786</Col>
+            <Col id="Column0">George Washington</Col>
+            <Col id="Column2">Popes Creek, Westmoreland County, Virgina USA</Col>
+            <Col id="Column1">modify</Col>
+            <Col id="Column6">George Washington was an American political leader, amry general and one  of the founding fathers of the USA.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">51651</Col>
+            <Col id="Column4">20170931</Col>
+            <Col id="Column5">51651</Col>
+            <Col id="Column0">Thomas Paine</Col>
+            <Col id="Column2">Thetford, United Kingdom</Col>
+            <Col id="Column1">delete</Col>
+            <Col id="Column6">Was an influential thinker, writer and a key figure in radicalism. He later moved to the USA.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">216548</Col>
+            <Col id="Column4">20171005</Col>
+            <Col id="Column5">216548</Col>
+            <Col id="Column0">Thomas Jefferson</Col>
+            <Col id="Column2">Shadwell, Virginia, USA</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column6">Founding Father and the principal author of the Declaration of Independence</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">216218</Col>
+            <Col id="Column4">20171111</Col>
+            <Col id="Column5">216218</Col>
+            <Col id="Column0">Alexander Hamilton</Col>
+            <Col id="Column2">Charlestown, Saint Kitts and Newis</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column6">Founding Father who served as a soldier, economist and lawyer.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">954561</Col>
+            <Col id="Column4">20170101</Col>
+            <Col id="Column5">954561</Col>
+            <Col id="Column0">John Adams</Col>
+            <Col id="Column2">Braintree, Massachusetts USA</Col>
+            <Col id="Column1">modify</Col>
+            <Col id="Column6">Founding Father and the second US President.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">2121684</Col>
+            <Col id="Column4">20170201</Col>
+            <Col id="Column5">2121684</Col>
+            <Col id="Column0">James Madison</Col>
+            <Col id="Column2">Belle Grove</Col>
+            <Col id="Column1">delete</Col>
+            <Col id="Column6">The fourth President of the USA and drafted the Constitution and the Bill of Rights.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">6549845</Col>
+            <Col id="Column4">20170601</Col>
+            <Col id="Column5">6549845</Col>
+            <Col id="Column0">John Marshall</Col>
+            <Col id="Column2">Germantown Road, Midland, Virginia USA</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column6">Influential fourth Chief of Justice of the United States.</Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="Column3">65150</Col>
+            <Col id="Column4">20170931</Col>
+            <Col id="Column5">65150</Col>
+            <Col id="Column0">Abigail Adams</Col>
+            <Col id="Column2">180 Norton St, Weymouth, Massachusetts USA</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column6">Wife and confidant of John Adams. </Col>
+            <Col id="chk"/>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Sojourner Truth</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column2">Rifton, New York USA</Col>
+            <Col id="Column3">158886</Col>
+            <Col id="Column4">20170429</Col>
+            <Col id="Column5">158886</Col>
+            <Col id="Column6">African-American abolitionist and women’s rights campaigner. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Abraham Lincoln</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column2">Licoln Farm Rd, Hodgenville, Kentucky USA</Col>
+            <Col id="Column3">258624</Col>
+            <Col id="Column4">20170111</Col>
+            <Col id="Column5">258624</Col>
+            <Col id="Column6">16th President of the US from 1861-1865. He led the Union forces during the American civil war. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Harriet Tubman</Col>
+            <Col id="Column1">modify</Col>
+            <Col id="Column2">Dorchester County, Maryland USA</Col>
+            <Col id="Column3">4569985</Col>
+            <Col id="Column4">20170829</Col>
+            <Col id="Column5">4569985</Col>
+            <Col id="Column6">Tubman escaped from slavery but returned on many dangerous missions to Maryland where she helped lead slaves to freedom. She also served as agent and leader during the Civil War. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Emily Dickinson</Col>
+            <Col id="Column1">delete</Col>
+            <Col id="Column2">Amherst, Massachusetts USA</Col>
+            <Col id="Column3">1245568</Col>
+            <Col id="Column4">20170605</Col>
+            <Col id="Column5">1245568</Col>
+            <Col id="Column6">One of America’s greatest poets, Emily Dickinson lived most of her life in seclusion. Her poems were published posthumously and received widespread literary praise for their bold and unconventional style.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Andrew Carnegie</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column2">Dunfermline, United Kingdom</Col>
+            <Col id="Column3">336985</Col>
+            <Col id="Column4">20170614</Col>
+            <Col id="Column5">336985</Col>
+            <Col id="Column6"> Carnegie became very rich, through his control of the US steel industry and other investments. With his wealth, he became a philanthropist.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">John D. Rockefeller</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column2">Richford, New York USA</Col>
+            <Col id="Column3">578962</Col>
+            <Col id="Column4">20170231</Col>
+            <Col id="Column5">578962</Col>
+            <Col id="Column6">Rockefeller was a successful businessman who controlled much of the US oil and railroad industries. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Thomas Edison</Col>
+            <Col id="Column1">modify</Col>
+            <Col id="Column2">Edison Dr, Milan, Ohio USA</Col>
+            <Col id="Column3">11235</Col>
+            <Col id="Column4">20170723</Col>
+            <Col id="Column5">11235</Col>
+            <Col id="Column6">Pioneer of the mass use and distribution of electricity. Edison was one of the most prolific inventors, who developed commercially available electric light bulbs.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Woodrow Wilson</Col>
+            <Col id="Column1">delete</Col>
+            <Col id="Column2">Staunton, Virginia USA</Col>
+            <Col id="Column3">569875</Col>
+            <Col id="Column4">20170406</Col>
+            <Col id="Column5">569875</Col>
+            <Col id="Column6">US president. Wilson was President during the First World War. His idealistic 14 points formed the basis for the League of Nations, the forerunner of the United Nations.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Booker T. Washington</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column2">Hale's Ford, Westlake Corner, Virginia USA</Col>
+            <Col id="Column3">5588966</Col>
+            <Col id="Column4">20170308</Col>
+            <Col id="Column5">5588966</Col>
+            <Col id="Column6">Author and orator, Washington was an adviser to the presidents of Roosevelt and Taft. He was the de facto leader of African-Americans. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Theodore Roosevelt</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column2">28 East 20th Street, Manhattan, New York USA</Col>
+            <Col id="Column3">639996</Col>
+            <Col id="Column4">20171205</Col>
+            <Col id="Column5">639996</Col>
+            <Col id="Column6">President (1901-09) Roosevelt was a leading political figure of the Progressive Era – fighting corruption and the power of monopoly trusts. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Ida B. Wells</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column2">Holly Springs, Mississippi USA</Col>
+            <Col id="Column3">859648</Col>
+            <Col id="Column4">20170925</Col>
+            <Col id="Column5">859648</Col>
+            <Col id="Column6">African-American activist for both civil rights and women’s suffrage.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Henry Ford</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column2">Greenfield Township, Michighan USA</Col>
+            <Col id="Column3">15698</Col>
+            <Col id="Column4">20170722</Col>
+            <Col id="Column5">15698</Col>
+            <Col id="Column6">Founder of Ford motor company. Ford pioneered the use of the assembly line for making cars, helping to reduce the price and make cars affordable for the average American consumer.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">W.E.B Du Bois</Col>
+            <Col id="Column1">modify</Col>
+            <Col id="Column2">Great Barrington, Massachusetts USA</Col>
+            <Col id="Column3">75489</Col>
+            <Col id="Column4">20170614</Col>
+            <Col id="Column5">75489</Col>
+            <Col id="Column6">Du Bois was an influential African-American activist who sought to campaign for full equality between blacks and whites. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Wright Brothers</Col>
+            <Col id="Column1">delete</Col>
+            <Col id="Column2">Millville, Indiana and Dayton, Ohio</Col>
+            <Col id="Column3">63963</Col>
+            <Col id="Column4">20170416</Col>
+            <Col id="Column5">63963</Col>
+            <Col id="Column6">Pioneers of developing the first powered airplanes.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Herbert Hoover</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column2">West Branch, Iowa, USA</Col>
+            <Col id="Column3">668955</Col>
+            <Col id="Column4">20170814</Col>
+            <Col id="Column5">668955</Col>
+            <Col id="Column6">Herbert Hoover was the 31st President of the Unites States. He served during the Great Depression.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Margaret Sanger</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column2">Corning, New York, USA</Col>
+            <Col id="Column3">754896</Col>
+            <Col id="Column4">20170517</Col>
+            <Col id="Column5">754896</Col>
+            <Col id="Column6">Margaret Sanger was a leading pioneer in providing contraception and health care services to women. </Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Franklin D. Roosevelt</Col>
+            <Col id="Column1">modify</Col>
+            <Col id="Column2">Hyde Park, New York, USA</Col>
+            <Col id="Column3">1258963</Col>
+            <Col id="Column4">20170318</Col>
+            <Col id="Column5">1258963</Col>
+            <Col id="Column6">Franklin D. Roosevelt was the 32nd President of the United States. He served throught he Great Depression and the Second World War.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Babe Ruth</Col>
+            <Col id="Column1">delete</Col>
+            <Col id="Column2">Baltimore, Marlyand, USA</Col>
+            <Col id="Column3">458962</Col>
+            <Col id="Column4">20170704</Col>
+            <Col id="Column5">458962</Col>
+            <Col id="Column6">A great baseball player who contributed to the rising popularity of the sport in 1920s and early 1930s.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Amelia Earhart</Col>
+            <Col id="Column1">inquiry</Col>
+            <Col id="Column2">Atchinson, Kansas, USA</Col>
+            <Col id="Column3">15756</Col>
+            <Col id="Column4">20170114</Col>
+            <Col id="Column5">15756</Col>
+            <Col id="Column6">She was an aviation pioneer and the first woman to fly across the Atlantic.</Col>
+          </Row>
+          <Row>
+            <Col id="chk"/>
+            <Col id="Column0">Ernest Hemingway</Col>
+            <Col id="Column1">input</Col>
+            <Col id="Column2">Oak Park, Illinois, USA</Col>
+            <Col id="Column3">25896</Col>
+            <Col id="Column4">20170326</Col>
+            <Col id="Column5">25896</Col>
+            <Col id="Column6">An American author and journalist who produced many famous works, including "For Whom the Bell Tolls".</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCombo">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">William Penn</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">Benjamin Franklin</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="data">George Washington</Col>
+          </Row>
+          <Row>
+            <Col id="code">4</Col>
+            <Col id="data">Thomas Paine</Col>
+          </Row>
+          <Row>
+            <Col id="code">5</Col>
+            <Col id="data">Thomas Jefferson</Col>
+          </Row>
+          <Row>
+            <Col id="code">5</Col>
+            <Col id="data">Alexander Hamilton</Col>
+          </Row>
+          <Row>
+            <Col id="code">6</Col>
+            <Col id="data">John Adams</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearchCombo">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">all</Col>
+            <Col id="data">ALL</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column0</Col>
+            <Col id="data">Column 0</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column1</Col>
+            <Col id="data">Column 1</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column2</Col>
+            <Col id="data">Column 2</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column3</Col>
+            <Col id="data">Column 3</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column4</Col>
+            <Col id="data">Column 4</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column5</Col>
+            <Col id="data">Column 5</Col>
+          </Row>
+          <Row>
+            <Col id="code">Column6</Col>
+            <Col id="data">Column 6</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsListCN">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="corporatename" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="iphone" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="wechat" type="STRING" size="256"/>
+          <Column id="contractcontent" type="STRING" size="256"/>
+          <Column id="contractdate" type="STRING" size="256"/>
+          <Column id="supplementarydate" type="STRING" size="256"/>
+          <Column id="contractprice" type="STRING" size="256"/>
+          <Column id="signedbyID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">1</Col>
+            <Col id="corporatename">特碧软件</Col>
+            <Col id="name">姜部长</Col>
+            <Col id="iphone">13888888881</Col>
+            <Col id="email">123456789@qq.com</Col>
+            <Col id="wechat">A123456</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">1</Col>
+          </Row>
+          <Row>
+            <Col id="id">2</Col>
+            <Col id="corporatename">中海国际</Col>
+            <Col id="name">李总</Col>
+            <Col id="iphone">13888888882</Col>
+            <Col id="email">123456789@baidu.com</Col>
+            <Col id="wechat">B123456</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">2</Col>
+          </Row>
+          <Row>
+            <Col id="id">3</Col>
+            <Col id="corporatename">祝你好运</Col>
+            <Col id="name">李给总啊</Col>
+            <Col id="iphone">13888888883</Col>
+            <Col id="email">123456789@qq.com</Col>
+            <Col id="wechat">C123456</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">2</Col>
+          </Row>
+          <Row>
+            <Col id="id">4</Col>
+            <Col id="corporatename">特碧软件</Col>
+            <Col id="name">发总吧</Col>
+            <Col id="iphone">13888888884</Col>
+            <Col id="email">123456789@360.com</Col>
+            <Col id="wechat">A1234567</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">2</Col>
+          </Row>
+          <Row>
+            <Col id="id">5</Col>
+            <Col id="corporatename">中海国际</Col>
+            <Col id="name">李的总从</Col>
+            <Col id="iphone">13888888885</Col>
+            <Col id="email">123456789@qq.com</Col>
+            <Col id="wechat">B1234567</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">2</Col>
+          </Row>
+          <Row>
+            <Col id="id">5</Col>
+            <Col id="corporatename">中海国际</Col>
+            <Col id="name">从阿的</Col>
+            <Col id="iphone">13888888886</Col>
+            <Col id="email">123456789@baidu.com</Col>
+            <Col id="wechat">C1234567</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">2</Col>
+          </Row>
+          <Row>
+            <Col id="id">6</Col>
+            <Col id="corporatename">祝你好运</Col>
+            <Col id="name">吗总额</Col>
+            <Col id="iphone">13888888887</Col>
+            <Col id="email">123456789@qq.com</Col>
+            <Col id="wechat">D123456</Col>
+            <Col id="contractcontent">特碧机房合同.doc</Col>
+            <Col id="contractdate">2020-2-20</Col>
+            <Col id="supplementarydate">2021-2-21</Col>
+            <Col id="contractprice">998</Col>
+            <Col id="signedbyID">2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearchComboCN">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">all</Col>
+            <Col id="data">ALL</Col>
+          </Row>
+          <Row>
+            <Col id="code">id</Col>
+            <Col id="data">ID</Col>
+          </Row>
+          <Row>
+            <Col id="code">corporatename</Col>
+            <Col id="data">Corporate Name</Col>
+          </Row>
+          <Row>
+            <Col id="code">name</Col>
+            <Col id="data">Name</Col>
+          </Row>
+          <Row>
+            <Col id="code">iphone</Col>
+            <Col id="data">Iphone</Col>
+          </Row>
+          <Row>
+            <Col id="code">email</Col>
+            <Col id="data">Email</Col>
+          </Row>
+          <Row>
+            <Col id="code">wechat</Col>
+            <Col id="data">Wechat</Col>
+          </Row>
+          <Row>
+            <Col id="code">contractcontent</Col>
+            <Col id="data">Contract Content</Col>
+          </Row>
+          <Row>
+            <Col id="code">contractdate</Col>
+            <Col id="data">Contract Date</Col>
+          </Row>
+          <Row>
+            <Col id="code">supplementarydate</Col>
+            <Col id="data">Supplementary Date</Col>
+          </Row>
+          <Row>
+            <Col id="code">contractprice</Col>
+            <Col id="data">Contract Price</Col>
+          </Row>
+          <Row>
+            <Col id="code">signedbyID</Col>
+            <Col id="data">Signed by ID</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsComboCN">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">特碧软件</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">中海国际</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="data">祝你特好运</Col>
+          </Row>
+          <Row>
+            <Col id="code">4</Col>
+            <Col id="data">特碧软件</Col>
+          </Row>
+          <Row>
+            <Col id="code">5</Col>
+            <Col id="data">中海国际</Col>
+          </Row>
+          <Row>
+            <Col id="code">5</Col>
+            <Col id="data">中海国际</Col>
+          </Row>
+          <Row>
+            <Col id="code">6</Col>
+            <Col id="data">祝你中好运</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+/**
+ * Dataset filter example
+ * dept_cd is column name, 'A1' and 'A2' is filter value
+ * this.Dataset00.filter("dept_cd == 'A1' && dept_cd == 'A2'");
+ * this.Dataset00.filter("dept_cd == 'A1' || dept_cd == 'A2'");
+ */
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var inputValue = this.Edit00.value;	
+	//var allFilterString = "id.indexOf(\""+inputValue+"\") > -1 || corporatename.indexOf(\""+inputValue+"\") > -1 || name.indexOf(\""+inputValue+"\") > -1 || iphone.indexOf(\""+inputValue+"\") > -1 || email.indexOf(\""+inputValue+"\") > -1 || wechat.indexOf(\""+inputValue+"\") > -1 || contractcontent.indexOf(\""+inputValue+"\") > -1 || contractdate.indexOf(\""+inputValue+"\") > -1 || supplementarydate.indexOf(\""+inputValue+"\") > -1 || contractprice.indexOf(\""+inputValue+"\") > -1 || signedbyID.indexOf(\""+inputValue+"\") > -1";
+	var arrayColumns = ["Column0", "Column1", "Column2", "Column3", "Column4", "Column5", "Column6"];
+	var columnName = this.comboSearch.value;	
+	var filterString = this.getFilterString(columnName, inputValue);
+	
+	if(inputValue == undefined) return this.dsList.filter("");
+	if(columnName === "all") filterString = this.getFilterString(columnName, inputValue, arrayColumns, true);
+	
+	this.dsList.set_enableevent(false);
+	this.dsList.filter(filterString);
+	this.dsList.set_enableevent(true);
+};
+
+this.btnReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsList.set_enableevent(false);
+	this.dsList.filter("");
+	this.dsList.set_enableevent(true);
+};
+
+this.Edit00_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode === 13) {
+	
+		this.btnSearch.click();
+	}
+};
+
+this.getFilterString = function(columnName, searchValue, arrayColumns, isArrayColumn) {
+	
+	var filterString = "";
+	if(searchValue == undefined) return this.dsList.filter("");
+	
+	searchValue = searchValue.toLowerCase();
+	if(isArrayColumn) {
+		arrayColumns.forEach(function(item, idx) {
+			idx === 0 
+			? filterString += item + ".toString().toLowerCase().indexOf(\""+searchValue+"\") > -1"
+			: filterString += " || " + item + ".toString().toLowerCase().indexOf(\""+searchValue+"\") > -1";
+		});		
+		return filterString;
+	}
+	
+	filterString = columnName + ".toString().toLowerCase().indexOf(\""+searchValue+"\") > -1";
+	return filterString;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+this.btnSearch00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var inputValue = this.Edit00_00.value;
+	var arrayColumns = ["id", "corporatename", "name", "iphone", "email", "wechat", "contractcontent", "contractdate", "supplementarydate", "contractprice", "signedbyID"];
+	var columnName = this.comboSearch.value;	
+	var filterString = this.getFilterString(columnName, inputValue);
+	
+	if(inputValue == undefined) return this.dsListCN.filter("");
+	if(columnName === "all") filterString = this.getFilterString(columnName, inputValue, arrayColumns, true);	
+	this.dsListCN.filter(filterString);
+};
+
+this.btnReset00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsListCN.filter("");
+};
+
+this.Edit00_00_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode === 13) {
+	
+		this.btnSearch00.click();
+	}
+};]]></Script>
+  </Form>
+</FDL>
